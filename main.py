@@ -65,9 +65,67 @@ def kinematics():
             v0 = float(vF) - (float(a) * float(t))
             d = ((float(v0) + float(vF)) / 2) * float(t)
             print(f"Displacement is {d} meters")
-    
+    elif v0 == "" and t == "":
+        which = input("Solve for time (t) or initial velocity (v0)? ")
+        if (which.lower() == "v0" or which.lower() == "initial velocity"):
+            t1 = (-float(vF) + math.sqrt((float(vF) * float(vF)) - (4 * float(a) / 2 * (float(d))))) / (-(float(a)))
+            t2 = (-float(vF) - math.sqrt((float(vF) * float(vF)) - (4 * float(a) / 2 * (float(d))))) / (-(float(a)))
+            if (t1 >= 0): 
+                v0 = float(vF) - (float(a) * t1)
+                print(f"Initial velocity is {v0}m/s")
+            else:
+                v0 = float(vF) - (float(a) * t2)
+                print(f"Initial velocity is {v0}m/s")
+        else:
+            t1 = (-float(vF) + math.sqrt((float(vF) * float(vF)) - (4 * float(a) / 2 * (float(d))))) / (-(float(a)))
+            t2 = (-float(vF) - math.sqrt((float(vF) * float(vF)) - (4 * float(a) / 2 * (float(d))))) / (-(float(a)))
+            if (t1 >= 0): 
+                print(f"Time is {t1}s")
+            else:
+                print(f"Time is {t2}s")
+    elif a == "" and d == "":
+        which = input("Solve for the acceleration (a) or displacement (d)? ")
+        if (which.lower() == "a" or which.lower() == "acceleration"):
+            a = (float(vF) - float(v0)) / float(t)
+            print(f"Acceleration is {a} meters per second squared")
+        else:
+            d = ((float(v0) + float(vF)) / 2) * float(t)
+            print(f"Displacement is {d} meters")
+    elif a == "" and t == "":        
+        which = input("Solve for the acceleration (a) or time (t)? ")
+        if (which.lower() == "a" or which.lower() == "acceleration"):
+            t = (2 * float(d)) / (float(v0) + float(vF))
+            a = (float(vF) - float(v0)) / float(t)
+            print(f"Acceleration is {a} meters per second squared")
+        else:
+            t = (2 * float(d)) / (float(v0) + float(vF))
+            print(f"Time is {t}s")
+    elif d == "" and t == "":
+        which = input("Solve for displacement (d) or time (t)? ")
+        if (which.lower() == "d" or which.lower() == "displacement"):
+            d = ((float(vF) * float(vF)) - (float(v0) * float(v0))) / (2 * float(a))
+            print(f"Displacement is {d} meters")
+        else:
+            t = (float(vF) - float(v0)) / float(a)
+            print(f"Time is {t}s")
+    elif v0 == "":
+        v0 = float(vF) - (float(a) * float(t))
+        print(f"Initial velocity is {v0}m/s")
+    elif vF == "":
+        vF = float(v0) + (float(a) * float(t))
+        print(f"Final velocity is {vF}m/s")
+    elif a == "":
+        a = (float(vF) - float(v0)) / float(t)
+        print(f"Acceleration is {a} meters per second squared")
+    elif t == "":
+        t = (float(vF) - float(v0)) / float(a)
+        print(f"Time is {t}s")
+    elif d == "":
+        d = ((float(v0) + float(vF)) / 2) * float(t)
+        print(f"Displacement is {d} meters")
+    else:
+        print("I cannot perform a calculation with the provided values.")
             
-
 kinematics()
 
 restart = input("Type 'y' to run the program again, type 'n' to stop the program: ")
